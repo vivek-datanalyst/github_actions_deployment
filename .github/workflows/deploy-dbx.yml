@@ -20,10 +20,9 @@ jobs:
       # Install Databricks CLI (v1.x)
       - name: Install Databricks CLI
         run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install --user databricks
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
-          export PATH="$HOME/.local/bin:$PATH"
+          curl -fsSL https://raw.githubusercontent.com/databricks/cli/main/install.sh | bash
+          echo "$HOME/.databricks/bin" >> $GITHUB_PATH
+          export PATH="$HOME/.databricks/bin:$PATH"
           databricks --version
 
       # Validate the bundle

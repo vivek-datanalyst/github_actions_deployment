@@ -27,9 +27,9 @@ jobs:
       # Validate the bundle
       - name: Validate Databricks bundle
         run: |
-          databricks bundle validate
+          databricks bundles validate
 
       # Deploy Databricks Asset Bundle
       - name: Deploy Databricks job
         run: |
-          databricks bundle deploy
+          databricks bundles deploy

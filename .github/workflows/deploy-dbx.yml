@@ -33,4 +33,4 @@ jobs:
       # Deploy Databricks Asset Bundle
       - name: Deploy Databricks job
         run: |
-          databricks bundle apply --no-prefix
+          databricks bundle deploy --no-prefix

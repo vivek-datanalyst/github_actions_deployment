@@ -16,8 +16,10 @@ jobs:
       # Install Databricks CLI
       - name: Install Databricks CLI
         run: |
-          pip install databricks-cli==0.221.0 databricks-sdk==0.30.0
-
+          pip install databricks-cli
+          pip install databricks-sdk
+          databricks --version
+          
       # Configure Databricks authentication
       - name: Configure Databricks
         env:

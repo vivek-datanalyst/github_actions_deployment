@@ -20,8 +20,9 @@ jobs:
       # Install Databricks CLI (v1.x)
       - name: Install Databricks CLI
         run: |
-          pip install databricks
-          pip install databricks-sdk
+          python3 -m pip install --upgrade pip
+          python3 -m pip install databricks
+          echo "$(python3 -m site --user-base)/bin" >> $GITHUB_PATH
           databricks --version
 
       # Validate the bundle

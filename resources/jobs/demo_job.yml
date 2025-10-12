@@ -1,0 +1,9 @@
+resources:
+  jobs:
+    demo_job:
+      name: "Demo Databricks Job"
+      tasks:
+        - task_key: "run_python"
+          description: "Simple hello world job"
+          notebook_task:
+            notebook_path: "/Workspace/Users/vivekkumar.ece2013@gmail.com/Hello_Aliens"

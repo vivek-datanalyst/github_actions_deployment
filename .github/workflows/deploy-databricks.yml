@@ -39,3 +39,4 @@ jobs:
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
           databricks bundles deploy
+

@@ -1,7 +1,7 @@
 name: Deploy Databricks Bundle
 
 on:
-  workflow_dispatch:  # 👈 Enables manual trigger from GitHub Actions UI
+  workflow_dispatch: 
 
 jobs:
   deploy:
@@ -13,12 +13,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      #  Install Databricks CLI
+      # Install Databricks CLI
       - name: Install Databricks CLI
         run: |
           pip install databricks-cli==0.221.0 databricks-sdk==0.30.0
 
-      #  Configure Databricks
+      # Configure Databricks authentication
       - name: Configure Databricks
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
@@ -27,12 +27,12 @@ jobs:
           databricks configure --host "$DATABRICKS_HOST" --token "$DATABRICKS_TOKEN" --quiet
           databricks whoami
 
-      #  Validate bundle before deploying
+      # Validate Databricks bundle
       - name: Validate Databricks bundle
         run: |
           databricks bundles validate
 
-      #  Deploy Databricks Asset Bundle
+      # Deploy Databricks job
       - name: Deploy Databricks job
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}

@@ -1,5 +1,3 @@
-bundle_prefix: ""
-
 resources:
   jobs:
     demo_job:

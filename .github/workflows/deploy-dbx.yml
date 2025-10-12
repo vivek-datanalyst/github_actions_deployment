@@ -20,16 +20,16 @@ jobs:
       # Install Databricks CLI (v1.x)
       - name: Install Databricks CLI
         run: |
-          pip install databricks-cli
+          pip install databricks
           pip install databricks-sdk
           databricks --version
 
       # Validate the bundle
       - name: Validate Databricks bundle
         run: |
-          databricks bundle validate
+          databricks bundles validate
 
       # Deploy Databricks Asset Bundle
       - name: Deploy Databricks job
         run: |
-          databricks bundle deploy
+          databricks bundles deploy

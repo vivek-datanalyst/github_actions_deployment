@@ -8,37 +8,33 @@ jobs:
     name: Deploy Databricks Job
     runs-on: ubuntu-latest
 
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
     steps:
       # Checkout your repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Install Databricks CLI
+      # Install Databricks CLI (v1.x)
       - name: Install Databricks CLI
         run: |
           pip install databricks-cli
           pip install databricks-sdk
           databricks --version
-          
-      # Configure Databricks authentication
-      - name: Configure Databricks
-        env:
-          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-        run: |
-          databricks configure --host "$DATABRICKS_HOST" --token "$DATABRICKS_TOKEN"
-          databricks whoami
 
-      # Validate Databricks bundle
+      # Verify Databricks connectivity
+      - name: Verify Databricks connection
+        run: |
+          databricks current-user me
+
+      # Validate the bundle
       - name: Validate Databricks bundle
         run: |
           databricks bundles validate
 
-      # Deploy Databricks job
+      # Deploy Databricks Asset Bundle
       - name: Deploy Databricks job
-        env:
-          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
           databricks bundles deploy
-

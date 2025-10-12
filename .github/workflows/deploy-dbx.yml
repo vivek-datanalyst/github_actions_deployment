@@ -24,11 +24,6 @@ jobs:
           pip install databricks-sdk
           databricks --version
 
-      # Verify Databricks connectivity
-      - name: Verify Databricks connection
-        run: |
-          databricks current-user me
-
       # Validate the bundle
       - name: Validate Databricks bundle
         run: |
